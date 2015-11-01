@@ -4,7 +4,9 @@ title:  "Cocos2d-x 3D简介"
 date:   2015-11-01 16:50:00
 categories: jekyll update
 ---
-'' auto sprite = Sprite3D::create("boss.c3b");
-'' sprite->setScale(5.f);
-'' sprite->setPosition(Vec2(200,200));
-'' scene->addChild(sprite);
+{% highlight c++ %}
+auto sprite = Sprite3D::create("boss.c3b");
+sprite->setScale(5.f);
+sprite->setPosition(Vec2(200,200));
+scene->addChild(sprite);
+{% endhighlight %}
