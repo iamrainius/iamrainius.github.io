@@ -106,6 +106,12 @@
 <div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">auto</span> <span class="n">sp</span> <span class="o">=</span> <span class="n">Sprite3D</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;axe.c3b&quot;</span><span class="p">);</span>
 <span class="n">sprite</span><span class="o">-</span><span class="err">\</span><span class="o">&gt;</span><span class="n">getAttachNode</span><span class="p">(</span><span class="s">&quot;Bip001 R Hand&quot;</span><span class="p">)</span><span class="o">-</span><span class="err">\</span><span class="o">&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">sp</span><span class="p">);</span></code></pre></div>
 
+<p><code>c++
+`auto sp = Sprite3D::create("axe.c3b");
+sprite-\&gt;getAttachNode("Bip001 R Hand")-\&gt;addChild(sp);
+</code>
+`</p>
+
 <p>以上代码为一个角色添加武器。传递给<code>getAttachNode(name)</code>的参数为目标节点的名字。可以理解为将多个简单模型组合在一起以得到更复杂的模型。效果如图：</p>
 
 <p><img src="http://www.cocos2d-x.org/attachments/download/5541" alt="" /></p>

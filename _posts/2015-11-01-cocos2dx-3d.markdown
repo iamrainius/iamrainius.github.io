@@ -44,6 +44,12 @@ auto sp = Sprite3D::create("axe.c3b");
 sprite-\>getAttachNode("Bip001 R Hand")-\>addChild(sp);
 {% endhighlight %}
 
+```c++
+`auto sp = Sprite3D::create("axe.c3b");
+sprite-\>getAttachNode("Bip001 R Hand")-\>addChild(sp);
+```
+`
+
 以上代码为一个角色添加武器。传递给`getAttachNode(name)`的参数为目标节点的名字。可以理解为将多个简单模型组合在一起以得到更复杂的模型。效果如图：
 
 ![][image-2]
