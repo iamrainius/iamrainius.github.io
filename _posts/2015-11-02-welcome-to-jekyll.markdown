@@ -20,6 +20,9 @@ print_hi('Tom')
 
 {% highlight c++ linenos %}
 {
+    int i = 0;
+    A* a = new A();
+    a->b = i;
     cout<<endl;
     cout<<"HAHAHA"<<endl;
     cout<<"I am KICIOLLO"<<endl;

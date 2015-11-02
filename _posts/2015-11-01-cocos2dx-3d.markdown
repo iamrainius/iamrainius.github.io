@@ -1,0 +1,93 @@
+---
+layout: post
+title:  "Cocos2d-x 3D简介"
+date:   2015-11-01 16:50:00
+categories: jekyll update
+---
+## 1 术语
+在进行3D游戏开发之前，你需要熟悉几个术语：
+- Mesh：构成形状的顶点及其纹理。
+
+- 模型：可渲染的对象。它是mesh的集合。在我们的引擎中就是`Sprite3D`。
+
+- 摄像机：由于3D世界并非平面，你需要设置一个看向它camera。设置不同的camera参数可以得到不同的场景。
+
+- 光照：光照使场景看上去更真实。为了使对象看上去真是，色彩需要跟随光线变化。向光的部分亮而背光的部分暗。
+
+- Billboard：对象总是面向光源的状态。
+
+- 射线：就是几何学上的射线。
+
+## 2 跨越到3D
+
+### 2.1 Sprite3D
+
+3D的Sprite多了一个z轴。`Sprite3D`的加载与显示如以下代码所示：
+
+{% highlight c++ linenos %}
+auto sprite = Sprite3D::create("boss.c3b");
+sprite->setScale(5.f);
+sprite->setPosition(Vec2(200,200));
+scene->addChild(sprite);
+{% endhighlight %}
+
+以上代码通过导入`.c3b`文件创建了一个`Sprite3D`对象：
+
+![][image-1]
+
+### 2.2 与Sprite3D一起工作
+
+#### 将3D模型添加到Sprite3D对象
+
+{% highlight c++ linenos %}
+auto sp = Sprite3D::create("axe.c3b");
+sprite->getAttachNode("Bip001 R Hand")->addChild(sp);
+{% endhighlight %}
+
+以上代码为一个角色添加武器。传递给`getAttachNode(name)`的参数为目标节点的名字。可以理解为将多个简单模型组合在一起以得到更复杂的模型。效果如图：
+
+![][image-2]
+
+#### 替换3D模型
+如果你的3D模型由mesh构成，那么可以通过`getMeshByIndex()`或`getMeshByName()`函数来访问mesh数据。以下代码通过更换mesh来实现给角色换衣服的功能：
+
+{% highlight c++ linenos %}
+auto sprite = Sprite3D::create("ReskinGirl.c3b");
+
+// display the first coat
+auto girlTop0 = sprite->getMeshByName("Girl_UpperBody01");
+if(girlTop0)
+{
+    girlTop0->setVisible(true);
+}
+
+auto girlTop1 = sprite->getMeshByName("Girl_UpperBody02");
+if(girlTop1)
+{
+    girlTop1->setVisible(false);
+}
+
+// swap to the second coat
+auto girlTop0 = sprite->getMeshByName("Girl_UpperBody01");
+if(girlTop0)
+{
+    girlTop0->setVisible(false);
+}
+
+auto girlTop1 = sprite->getMeshByName("Girl_UpperBody02");
+if(girlTop1)
+{
+    girlTop1->setVisible(true);
+}
+{% endhighlight %}
+
+![][image-3]![][image-4]
+
+
+
+
+
+[image-1]:	http://www.cocos2d-x.org/attachments/download/5537
+[image-2]:	http://www.cocos2d-x.org/attachments/download/5541
+[image-3]:	http://www.cocos2d-x.org/attachments/download/5546
+[image-4]:	http://www.cocos2d-x.org/attachments/download/5544
